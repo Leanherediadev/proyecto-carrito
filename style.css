@@ -1,4 +1,106 @@
+:root{
+  --warm-500: #FF7043;   /* naranja principal */
+  --warm-400: #FF8A65;
+  --warm-300: #FFAB91;
+  --warm-yellow: #FFD54F; /* amarillo */
+  --warm-red: #E57373;    /* rojo claro */
+  --bg: #FFF8E1;          /* beige claro de fondo */
+  --card: #FFFFFF;
+  --muted: #6b6b6b;
+}
 
-body {
-    background: #f8f9fa;
+*{box-sizing:border-box}
+
+body{
+  background: linear-gradient(180deg, #FFF8E1 0%, #FFF3E0 100%);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: #222;
+}
+
+/* NAV */
+#mainNav{
+  background: linear-gradient(90deg, var(--warm-500), var(--warm-400));
+  color: #fff;
+}
+.navbar .navbar-brand, .navbar .navbar-brand * { color: #fff !important; }
+.navbar .form-control { border-radius: 8px; }
+.logo-square{
+  width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  background:var(--warm-yellow); color:#222; font-weight:700;
+}
+
+/* PRODUCT CARD */
+#productos .card{
+  width: 220px;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  background: linear-gradient(180deg, var(--card), #FFFDF9);
+  box-shadow: 0 8px 20px rgba(255,112,67,0.08);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#productos .card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(255,112,67,0.12);
+}
+
+.card h5{
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #2b2b2b;
+}
+
+.card .precio{
+  font-weight: 700;
+  color: var(--warm-500);
+}
+
+/* card actions */
+.card .card-actions{
+  display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:6px;
+}
+
+/* botones */
+.btn-primary{
+  background: linear-gradient(90deg,var(--warm-500),var(--warm-red));
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(233,64,64,0.08);
+}
+.btn-outline-light{
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  background: transparent;
+}
+
+/* carrito list */
+#carrito .list-group-item{
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  background: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+}
+
+/* inputs */
+input[type="number"]{
+  width:72px;
+  border-radius:8px;
+}
+
+/* totals */
+#total, #totalModal{
+  color: var(--warm-500);
+  font-size:1.1rem;
+}
+
+/* mobile tweaks */
+@media (max-width:576px){
+  #productos .card { width: calc(50% - 12px); }
+  .navbar .form-control { display:none; }
+  #mainNav { padding: 0.5rem 0; }
 }
