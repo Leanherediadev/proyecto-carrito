@@ -1,0 +1,141 @@
+🛒 Carrito2025 – Carrito de Compras (JavaScript Básico)
+
+¡Bienvenido a TiendaWarm!
+Este proyecto es un carrito de compras completo, creado únicamente con:
+
+HTML
+
+CSS
+
+JavaScript SIN clases
+
+Bootstrap 5
+
+localStorage para persistencia
+
+Diseñado con una estética Warm & Flat, utilizando tonos cálidos (naranjas, rojos y beige) y un modal moderno para el carrito.
+
+🎨 Características principales
+✔ Diseño cálido y moderno (Paleta Warm)
+
+Navbar degradado naranja/rojo
+
+Cards limpias con sombras suaves
+
+Modal elegante para ver el carrito
+
+Layout responsive con Bootstrap
+
+✔ Funcionalidades completas del carrito
+
+Agregar productos
+
+Ver el carrito dentro de un modal
+
+Modificar cantidades desde el carrito
+
+Eliminar productos
+
+Vaciar carrito (con confirmación)
+
+Total dinámico
+
+Persistencia con localStorage
+
+Finalizar compra
+
+✔ Extra UI/UX
+
+Notificaciones con Toastify
+
+Confirmaciones con SweetAlert2
+
+Buscador de productos
+
+Filtro por categoría
+
+Ordenamiento por precio o nombre
+
+Contador dinámico en el ícono del carrito
+
+📁 Estructura del proyecto
+📦 PROYECTO-CARRITO
+ ├─ index.html
+ ├─ style.css
+ ├─ app.js
+ └─ (Opcional) /img
+
+
+index.html → estructura principal + modal
+
+style.css → estilos warm personalizados
+
+app.js → toda la lógica del carrito (sin clases)
+
+🚀 Cómo ejecutar el proyecto
+
+Descargá o cloná el repositorio:
+
+git clone https://github.com/Leanherediadev/proyecto-carrito
+
+
+Asegurate de que los archivos estén juntos en la misma carpeta.
+
+Abrí index.html en tu navegador.
+
+¡Listo! La tienda está funcionando.
+
+🧠 Tecnologías utilizadas
+
+HTML5
+
+CSS3
+
+Bootstrap 5.3
+
+JavaScript (ES6 básico)
+
+localStorage
+
+SweetAlert2
+
+ToastifyJS
+
+📝 Objetivo educativo
+
+Este proyecto está desarrollado siguiendo un modelo simple y claro de JavaScript sin programación orientada a objetos, basado únicamente en:
+
+Arrays
+
+Objetos literales
+
+Funciones básicas
+
+Manipulación del DOM
+
+Eventos
+
+Persistencia con localStorage
+
+Ideal para prácticas iniciales, trabajos prácticos y proyectos introductorios.
+
+📚 Documento de referencia
+
+El desarrollo se basó en el archivo PDF “Carrito2025”, incluido en la raíz del proyecto:
+
+📄 /mnt/data/Carrito2025 - Documentos de Google.pdf
+
+💬 Mejoras futuras
+
+Implementar modo oscuro
+
+Añadir login y usuarios
+
+Crear backend con Express + base de datos
+
+Sistema de categorías con íconos
+
+❤️ Autor
+
+Carrito2025 – Proyecto práctico de JavaScript
+Desarrollado con fines educativos.
