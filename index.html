@@ -1,34 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Carrito 2025</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Warm - Carrito sin clases</title>
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- SweetAlert2 (confirmaciones) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Toastify (notificaciones pequeñas) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="container py-4">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-sm sticky-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="fw-bold">Carrito2025</span>
+      </a>
 
-    
-    <h1 class="mb-4 text-center">Carrito de Compras</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-   
-    <h2>Productos</h2>
-    <div id="productos" class="d-flex flex-wrap gap-3 mb-4"></div>
+      <div class="collapse navbar-collapse" id="navMain">
+        <form class="d-flex ms-3 flex-grow-1" onsubmit="event.preventDefault(); filtrarBusqueda();">
+          <input id="buscarInput" class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
+          <button class="btn btn-outline-light" type="button" onclick="filtrarBusqueda()"><i class="bi bi-search"></i></button>
+        </form>
 
-    <h2>Carrito</h2>
-    <ul id="carrito" class="list-group mb-3"></ul>
-  
-    <p class="fs-5">Total: <strong id="total">$0</strong></p>
+        <ul class="navbar-nav ms-3 align-items-center">
+          <li class="nav-item me-2">
+            <select id="ordenSelect" class="form-select" onchange="ordenarProductos()">
+              <option value="">Ordenar</option>
+              <option value="precioAsc">Precio ↑</option>
+              <option value="precioDesc">Precio ↓</option>
+              <option value="nombreAsc">Nombre A-Z</option>
+            </select>
+          </li>
 
+          <li class="nav-item me-2">
+            <select id="categoriaSelect" class="form-select" onchange="filtrarPorCategoria()">
+              <option value="todas">Todas</option>
+              <option value="bebida">Bebidas</option>
+              <option value="almacen">Almacén</option>
+            </select>
+          </li>
 
-    <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar carrito</button>
+          <li class="nav-item">
+            <button class="btn position-relative btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#cartModal" id="btnCart">
+              <i class="bi bi-cart3"></i>
+              <span id="contadorBadge" class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    
-    <script src="app.js"></script>
+  <!-- MAIN -->
+  <main class="container my-5">
+    <div class="row mb-3">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="mb-0">Productos</h1>
+        <div class="text-end">
+          <div class="fw-semibold">Total: <span id="total">$0</span></div>
+          <button class="btn btn-outline-danger btn-sm mt-2" onclick="confirmarVaciar()">Vaciar carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productos -->
+    <div id="productos" class="d-flex flex-wrap gap-3"></div>
+
+    <hr class="my-5">
+
+    <div class="row">
+      <div class="col-12 text-center text-muted">
+        <h1 class="mb-0">Detalles</h1>
+        <small>Seleccioná productos para agregarlos al carrito. Podés abrir el carrito desde el botón arriba a la derecha.</small><br>
+        <small>Proyecto práctico •  Solo JS básico • localStorage</small><br>
+        <small>PDF de referencia: <code>/mnt/data/Carrito2025 - Documentos de Google.pdf</code></small>
+      </div>
+    </div>
+  </main>
+
+  <!-- CART MODAL -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-end modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="border:none">
+          <h5 class="modal-title">Carrito</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <ul id="carrito" class="list-group"></ul>
+        </div>
+
+        <div class="modal-footer d-flex justify-content-between align-items-center">
+          <small class="text-muted">IVA incluido</small>
+          <div>
+            <span id="totalModal" class="fw-bold me-3">$0</span>
+            <button class="btn btn-success" onclick="finalizarCompra()">Finalizar compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-light py-4 mt-5 shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <div>© 2025 TiendaWarm</div>
+      <div class="text-muted">Paleta Warm • Flat • Responsive</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
 </body>
 </html>
